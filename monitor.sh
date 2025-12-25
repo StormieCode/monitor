@@ -1,4 +1,5 @@
 #!/bin/bash
+set +e
 
 DATA=$(curl -s -L $LINK \
   -H 'User-Agent: Mozilla/5.0' \
@@ -13,12 +14,13 @@ send_alert () {
     -d "{\"content\": \"@everyone\\n$message\"}"
 }
 
-echo "$DATA" | jq -c '.[]' | while read -r game; do
-  plrs=$(echo "$game" | jq -r '.plrs')
-  max=$(echo "$game" | jq -r '.maxPlayers')
-  name=$(echo "$game" | jq -r '.Name')
-  creator=$(echo "$game" | jq -r '.creator // "Unknown"')
-  id=$(echo "$game" | jq -r '.id')
+echo "$DATA" | jq -c '.[]? // empty' | while read -r game; do
+[[ -z "$game" ]] && continue
+plrs=$(echo "$game" | jq -r '.plrs // 0')
+max=$(echo "$game" | jq -r '.maxPlayers // 0')
+name=$(echo "$game" | jq -r '.Name // "Unknown"')
+creator=$(echo "$game" | jq -r '.creator // "Unknown"')
+id=$(echo "$game" | jq -r '.id // "N/A"')
   jobs=$(echo "$game" | jq -r '
     if (.jobidsArray | length) > 0
     then (.jobidsArray | map("• `" + . + "`") | join("\n"))
@@ -27,6 +29,8 @@ echo "$DATA" | jq -c '.[]' | while read -r game; do
   ')
 
   # Skip if below lowest threshold
+  echo "Checking: $name ($plrs players)"
+
   [[ "$plrs" -lt 200 ]] && continue
 
   MESSAGE="🚨 **Player Threshold Hit**
