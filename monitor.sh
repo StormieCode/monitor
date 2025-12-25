@@ -111,12 +111,12 @@ $jobs
   # -------------------------
   END=$(date +%s)
   ELAPSED=$((END-START))
-  MIN_LOOP=300   # 5 minutes
-  MAX_LOOP=420   # 7 minutes
+  MIN_LOOP=19   # 
+  MAX_LOOP=353   
 
   if [[ $ELAPSED -lt $MIN_LOOP ]]; then
     EXTRA=$(( (RANDOM % (MAX_LOOP - MIN_LOOP + 1)) + (MIN_LOOP - ELAPSED) ))
-    echo "Extra sleep to reach ~5–7 min total: $EXTRA seconds"
+    echo "Extra sleep to reach ~6–7 min total: $EXTRA seconds"
     sleep "$EXTRA"
   fi
 
