@@ -3,7 +3,7 @@ name: Game Monitor
 on:
   schedule:
     # Runs every 5 minutes (you can adjust)
-    - cron: '*/5 * * * *'
+    - cron: '*/1 * * * *'
   workflow_dispatch:  # allows manual trigger
 
 jobs:
