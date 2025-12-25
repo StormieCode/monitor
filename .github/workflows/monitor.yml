@@ -2,27 +2,27 @@ name: Game Monitor
 
 on:
   schedule:
-    - cron: "*/5 * * * *"   # every 5 minutes
-  workflow_dispatch:
+    # Runs every 5 minutes (you can adjust)
+    - cron: '*/5 * * * *'
+  workflow_dispatch:  # allows manual trigger
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
-
+    env:
+      LINK: ${{ secrets.LINK }}
+      COOKIE_KEY: ${{ secrets.COOKIE_KEY }}
+      DISCORD_WEBHOOK200: ${{ secrets.DISCORD_WEBHOOK200 }}
+      DISCORD_WEBHOOK300: ${{ secrets.DISCORD_WEBHOOK300 }}
+      DISCORD_WEBHOOK400: ${{ secrets.DISCORD_WEBHOOK400 }}
+      DISCORD_WEBHOOK500: ${{ secrets.DISCORD_WEBHOOK500 }}
+      DISCORD_WEBHOOK1000: ${{ secrets.DISCORD_WEBHOOK1000 }}
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: Install jq
-        run: sudo apt-get update && sudo apt-get install jq -y
+        run: sudo apt-get update && sudo apt-get install -y jq curl
 
-      - name: Run script
+      - name: Run Monitor Script
         run: bash monitor.sh
-        env:
-          COOKIE_KEY: ${{ secrets.COOKIE_KEY }}
-          DISCORD_WEBHOOK200: ${{ secrets.DISCORD_WEBHOOK200 }}
-          DISCORD_WEBHOOK500: ${{ secrets.DISCORD_WEBHOOK500 }}
-          DISCORD_WEBHOOK300: ${{ secrets.DISCORD_WEBHOOK200 }}
-          DISCORD_WEBHOOK400: ${{ secrets.DISCORD_WEBHOOK200 }}
-          DISCORD_WEBHOOK1000: ${{ secrets.DISCORD_WEBHOOK1000 }}
-          LINK: ${{ secrets.LINK }}
