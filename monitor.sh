@@ -73,19 +73,19 @@ $jobs
   # Threshold → webhook routing
   # -------------------------
   if [[ "$plrs" -ge 1000 ]]; then
-    send_alert "$DISCORD_WEBHOOK_1000" "$MESSAGE"
+    send_alert "$DISCORD_WEBHOOK1000" "$MESSAGE"
 
   elif [[ "$plrs" -ge 500 ]]; then
-    send_alert "$DISCORD_WEBHOOK_500" "$MESSAGE"
+    send_alert "$DISCORD_WEBHOOK500" "$MESSAGE"
 
   elif [[ "$plrs" -ge 400 ]]; then
-    send_alert "$DISCORD_WEBHOOK_400" "$MESSAGE"
+    send_alert "$DISCORD_WEBHOOK400" "$MESSAGE"
 
   elif [[ "$plrs" -ge 300 ]]; then
-    send_alert "$DISCORD_WEBHOOK_300" "$MESSAGE"
+    send_alert "$DISCORD_WEBHOOK300" "$MESSAGE"
 
   elif [[ "$plrs" -ge 10 ]]; then
-    send_alert "$DISCORD_WEBHOOK_200" "$MESSAGE"
+    send_alert "$DISCORD_WEBHOOK200" "$MESSAGE"
   fi
 done
 
