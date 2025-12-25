@@ -20,9 +20,9 @@ jobs:
         run: bash monitor.sh
         env:
           COOKIE_KEY: ${{ secrets.COOKIE_KEY }}
-          DISCORD_WEBHOOK_200: ${{ secrets.DISCORD_WEBHOOK_200 }}
-          DISCORD_WEBHOOK_500: ${{ secrets.DISCORD_WEBHOOK_500 }}
-          DISCORD_WEBHOOK_300: ${{ secrets.DISCORD_WEBHOOK_200 }}
-          DISCORD_WEBHOOK_400: ${{ secrets.DISCORD_WEBHOOK_200 }}
-          DISCORD_WEBHOOK_1000: ${{ secrets.DISCORD_WEBHOOK_1000 }}
+          DISCORD_WEBHOOK200: ${{ secrets.DISCORD_WEBHOOK200 }}
+          DISCORD_WEBHOOK500: ${{ secrets.DISCORD_WEBHOOK500 }}
+          DISCORD_WEBHOOK300: ${{ secrets.DISCORD_WEBHOOK200 }}
+          DISCORD_WEBHOOK400: ${{ secrets.DISCORD_WEBHOOK200 }}
+          DISCORD_WEBHOOK1000: ${{ secrets.DISCORD_WEBHOOK1000 }}
           LINK: ${{ secrets.LINK }}
