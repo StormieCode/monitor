@@ -84,7 +84,7 @@ $jobs
   elif [[ "$plrs" -ge 300 ]]; then
     send_alert "$DISCORD_WEBHOOK_300" "$MESSAGE"
 
-  elif [[ "$plrs" -ge 200 ]]; then
+  elif [[ "$plrs" -ge 10 ]]; then
     send_alert "$DISCORD_WEBHOOK_200" "$MESSAGE"
   fi
 done
