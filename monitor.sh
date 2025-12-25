@@ -89,6 +89,8 @@ $jobs
   fi
 done
 
+echo "Game $name has $plrs players (below threshold)" 
+
 # Optional: keep this for testing
 # curl -s -X POST "$DISCORD_WEBHOOK_200" \
 #   -H "Content-Type: application/json" \
