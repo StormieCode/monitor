@@ -14,7 +14,6 @@ if [[ -z "$COOKIE_KEY" ]]; then
   exit 1
 fi
 
-
 # -------------------------
 # Fetch data
 # -------------------------
@@ -26,15 +25,18 @@ DATA=$(curl -s -L "$LINK" \
 echo "Data fetched. Checking games..."
 
 # -------------------------
-# Alert function
+# Alert function with proper JSON escaping
 # -------------------------
 send_alert () {
   local webhook="$1"
   local message="$2"
 
+  # Escape message safely for JSON
+  escaped=$(jq -Rn --arg msg "$message" '{"content":$msg}')
+
   curl -s -X POST "$webhook" \
     -H "Content-Type: application/json" \
-    -d "{\"content\": \"@everyone\\n$message\"}"
+    -d "$escaped"
 }
 
 # -------------------------
@@ -88,10 +90,3 @@ $jobs
     send_alert "$DISCORD_WEBHOOK200" "$MESSAGE"
   fi
 done
-
-echo "Game $name has $plrs players (below threshold)" 
-
-# Optional: keep this for testing
-# curl -s -X POST "$DISCORD_WEBHOOK_200" \
-#   -H "Content-Type: application/json" \
-#   -d '{"content":"@everyone ✅ Test alert from GitHub Actions"}'
