@@ -1,8 +1,5 @@
 #!/bin/bash
 
-DELAY=$((RANDOM % 60 + 1))
-sleep "$DELAY"
-
 DATA=$(curl -s -L $LINK \
   -H 'User-Agent: Mozilla/5.0' \
   -H "Cookie: key=$COOKIE_KEY")
