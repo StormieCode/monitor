@@ -40,7 +40,7 @@ while true; do
   # -------------------------
   # Random sleep 60–120 seconds between fetches
   # -------------------------
-  DELAY=$((RANDOM % 61 + 60))  # 60–120 seconds
+  DELAY=$((RANDOM % 27 + 1))  # 60–120 seconds
   echo "Sleeping for $DELAY seconds before request..."
   sleep "$DELAY"
 
@@ -112,7 +112,7 @@ $jobs
   END=$(date +%s)
   ELAPSED=$((END-START))
   MIN_LOOP=19   # 
-  MAX_LOOP=353   
+  MAX_LOOP=153   
 
   if [[ $ELAPSED -lt $MIN_LOOP ]]; then
     EXTRA=$(( (RANDOM % (MAX_LOOP - MIN_LOOP + 1)) + (MIN_LOOP - ELAPSED) ))
