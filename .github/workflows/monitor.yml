@@ -17,4 +17,4 @@ jobs:
         run: sudo apt-get update && sudo apt-get install jq -y
 
       - name: Run script
-        run: bash check_games.sh
+        run: bash monitor.sh
