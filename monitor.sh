@@ -57,3 +57,13 @@ $jobs
     send_alert "$DISCORD_WEBHOOK_500" "$MESSAGE"
   fi
 done
+
+echo "Script started at $(date)"
+echo "Sleeping before request..."
+echo "Fetching data..."
+echo "Data fetched, checking games..."
+echo "Checking: $name ($plrs players)"
+curl -s -X POST "$DISCORD_WEBHOOK_200" \
+  -H "Content-Type: application/json" \
+  -d '{"content":"@everyone ✅ Test alert from GitHub Actions"}'
+
