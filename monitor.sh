@@ -14,12 +14,6 @@ if [[ -z "$COOKIE_KEY" ]]; then
   exit 1
 fi
 
-# -------------------------
-# Random sleep 60–360s
-# -------------------------
-DELAY=$((RANDOM % 301 + 60))
-echo "Sleeping for $DELAY seconds before request..."
-sleep "$DELAY"
 
 # -------------------------
 # Fetch data
